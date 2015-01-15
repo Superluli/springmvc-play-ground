@@ -1,39 +1,15 @@
 package com.superluli.spg.test;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/appointments")
+@RestController
+@RequestMapping("/test")
 public class TestController {
-    private final AppointmentBook appointmentBook;
 
-    @Autowired
-    public AppointmentsController(AppointmentBook appointmentBook) {
-        this.appointmentBook = appointmentBook;
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public Map<String, Appointment> get() {
-        return appointmentBook.getAppointmentsForToday();
-    }
-
-    @RequestMapping(value="/{day}", method = RequestMethod.GET)
-    public Map<String, Appointment> getForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) Date day, Model model) {
-        return appointmentBook.getAppointmentsForDay(day);
-    }
-
-    @RequestMapping(value="/new", method = RequestMethod.GET)
-    public AppointmentForm getNewForm() {
-        return new AppointmentForm();
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public String add(@Valid AppointmentForm appointment, BindingResult result) {
-        if (result.hasErrors()) {
-            return "appointments/new";
-        }
-        appointmentBook.addAppointment(appointment);
-        return "redirect:/appointments";
+    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    public String printHello() {
+       return "hello";
     }
 }

@@ -15,8 +15,8 @@
 	</servlet>
 
 	<servlet-mapping>
-	    <servlet-name>Jersey Web Application</servlet-name>
-	    <url-pattern>/resources/*</url-pattern>
+	    <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+	    <url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
