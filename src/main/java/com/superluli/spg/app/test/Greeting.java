@@ -2,19 +2,31 @@ package com.superluli.spg.app.test;
 
 public class Greeting {
 
-    private final long id;
-    private final String content;
+    private long id;
+    private String content;
+
+    public Greeting() {
+
+    }
 
     public Greeting(long id, String content) {
-        this.id = id;
-        this.content = content;
+	this.id = id;
+	this.content = content;
     }
 
     public long getId() {
-        return id;
+	return id;
+    }
+
+    public void setId(long id) {
+	this.id = id;
     }
 
     public String getContent() {
-        return content;
+	return content;
+    }
+
+    public void setContent(String content) {
+	this.content = content;
     }
 }
