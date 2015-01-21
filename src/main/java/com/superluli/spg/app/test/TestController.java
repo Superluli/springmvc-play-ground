@@ -2,7 +2,7 @@ package com.superluli.spg.app.test;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.RequestEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,13 +23,9 @@ public class TestController {
     }
     
     @RequestMapping(value = "/greeting", method = RequestMethod.POST, consumes="application/json")
-    public Greeting postGreeting(@RequestBody Greeting greeting) {
-	test();
-	return greeting;
-    }
-    
-    public void test(){
-	System.out.println("asda");
+    public Greeting postGreeting(RequestEntity<Greeting> requestEntity) {
+	throw new RuntimeException("LOL!");
+	//return requestEntity.getBody();
     }
     
 }

@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Configuration;
  * shortcomings : this doesn't work for yaml files, and since all properties merge to environment,
  * values will be missing if key duplicates in multiple properties files
  */
-//@PropertySource("classpath:application2.properties")
+// @PropertySource("classpath:application2.properties")
 public class ApplicationConfig {
     
+
 }
