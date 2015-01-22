@@ -4,8 +4,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(locations = "classpath:application.properties", prefix = "app")
+@ConfigurationProperties(prefix = "app")
 public class AppConfig {
+
+    @Override
+    public String toString() {
+	return "AppConfig [name=" + name + ", owner=" + owner + "]";
+    }
 
     private String name;
     public Owner owner;
@@ -19,6 +24,11 @@ public class AppConfig {
     }
 
     public static class Owner {
+	@Override
+	public String toString() {
+	    return "Owner [name=" + name + ", age=" + age + "]";
+	}
+
 	private String name;
 
 	private int age;

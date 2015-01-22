@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 /*
- * tightly(type safe) bind properties and yaml file to a pojo
+ * tightly(type safe) bind properties and yaml file to a pojo, and properties won't be merged into
+ * environment, and can use "merge" flag to choose if overwrite if same key found from high level
+ * property source(CL, default file, etc)
  */
 @EnableConfigurationProperties
 /*
@@ -14,8 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * shortcomings : this doesn't work for yaml files, and since all properties merge to environment,
  * values will be missing if key duplicates in multiple properties files
  */
-// @PropertySource("classpath:application2.properties")
+//@PropertySource("classpath:nested.properties")
 public class ApplicationConfig {
-    
 
 }

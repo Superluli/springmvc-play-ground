@@ -1,28 +1,17 @@
 {
-    "serviceUrls": {
-        "amex-token-service": {},
-        "visa-token-service": {
-            "urls": {
-                "token-service-check-status-url": "/tokens/check",
-                "token-service-replenish-url": "/tokens/replenish",
-                "auth-service-url": "/ics/auth/oauth2/token",
-                "token-service-ack-url": "/tokens/ack",
-                "token-service-delete-url": "/tokens/delete",
-                "device-service-url": "/ics/device/register",
-                "token-service-url": "/tokens/provision",
-                "token-service-resume-url": "/tokens/resume",
-                "token-service-suspend-url": "/tokens/suspend",
-                "base-url": "https://sandbox.digital.visa.com"
-            },
-            "provider": "VISA"
-        },
-        "samsung-token-service": {
-            "provider": "SAMSUNG",
-            "urls": {
-                "base-url": "http://localhost:9030",
-                "channel-url":"/samsung/channels",
-                "tokens-url":"/samsung/tokens"
-            }
+    "watcher" : {
+        "name" : "nba enthusiast" ,
+        "age" : 26,
+        "address" : {
+
         }
-    }
+    },
+    "league" : {
+        "name" : "NBA",
+        "teams" : [
+            {"name" : "Team A", "ranking" : 1},{"name" : "Team B", "ranking" : 2}
+        ]
+
+    },
+    "app" : "XXX"
 }
