@@ -1,8 +1,12 @@
 package com.superluli.spg.app;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+@ComponentScan
+@EnableAutoConfiguration
 @Configuration
 /*
  * tightly(type safe) bind properties and yaml file to a pojo, and properties won't be merged into
@@ -17,6 +21,6 @@ import org.springframework.context.annotation.Configuration;
  * values will be missing if key duplicates in multiple properties files
  */
 //@PropertySource("classpath:nested.properties")
-public class ApplicationConfig {
+public class ApplicationContext {
 
 }

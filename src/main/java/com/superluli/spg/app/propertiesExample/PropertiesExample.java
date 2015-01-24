@@ -1,4 +1,4 @@
-package com.superluli.spg.app.test;
+package com.superluli.spg.app.propertiesExample;
 
 import javax.annotation.PostConstruct;
 
@@ -11,7 +11,7 @@ import com.superluli.spg.app.configs.NBAAccountConfig;
 import com.superluli.spg.app.configs.NestedConfig;
 
 @Component
-public class PropertiesTest {
+public class PropertiesExample {
 
     @Autowired
     Environment env;
