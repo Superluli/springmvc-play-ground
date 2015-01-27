@@ -1,21 +1,21 @@
 package com.superluli.spg.app.restexample.test.integration;
 
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.annotation.DirtiesContext;
@@ -30,6 +30,8 @@ import com.superluli.spg.app.restexample.MyModel;
 import com.superluli.spg.app.restexample.MyModelController;
 import com.superluli.spg.app.restexample.MyModelManager;
 import com.superluli.spg.app.restexample.MyModelRepository;
+import com.superluli.spg.app.restexample.test.TestConstants;
+import com.superluli.spg.app.restexample.test.TestWebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -99,7 +101,7 @@ public class IntegrationWithMockTest {
 	MyModel m = manager.post(new MyModel());
 	System.out.println(m);
 	mockMvc.perform(
-		post("/resources").contentType("application/json").content(
+		post("/resources").contentType(TestConstants.CONTENT_TYPE).content(
 			jsonMapper.writeValueAsBytes(model))).andExpect(status().isOk())
 		.andExpect(jsonPath("$.id", is("123"))).andExpect(jsonPath("$.name", is("ball")));
 

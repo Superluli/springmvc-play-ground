@@ -1,7 +1,11 @@
 package com.superluli.spg.app.restexample.test.integration;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -19,6 +23,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.superluli.spg.app.restexample.MyModel;
+import com.superluli.spg.app.restexample.test.TestConstants;
+import com.superluli.spg.app.restexample.test.TestWebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -64,7 +70,7 @@ public class IntegrationTest {
 	 */
 	MvcResult postResult = mockMvc
 		.perform(
-			post("/resources").contentType("application/json").content(
+			post("/resources").contentType(TestConstants.CONTENT_TYPE).content(
 				jsonMapper.writeValueAsBytes(model))).andExpect(status().isOk())
 		.andReturn();
 
@@ -76,7 +82,7 @@ public class IntegrationTest {
 	/*
 	 * get
 	 */
-	mockMvc.perform(get("/resources/{id}", id).contentType("application/json"))
+	mockMvc.perform(get("/resources/{id}", id).contentType(TestConstants.CONTENT_TYPE))
 		.andExpect(status().isOk())
 		.andExpect(content().bytes(jsonMapper.writeValueAsBytes(resultModel)));
 	/*
@@ -84,18 +90,18 @@ public class IntegrationTest {
 	 */
 	resultModel.set("another key", "another value");
 	mockMvc.perform(
-		put("/resources/{id}", id).contentType("application/json").content(
+		put("/resources/{id}", id).contentType(TestConstants.CONTENT_TYPE).content(
 			jsonMapper.writeValueAsBytes(resultModel))).andExpect(status().isOk())
 		.andExpect(content().bytes(jsonMapper.writeValueAsBytes(resultModel)));
 	/*
 	 * delete
 	 */
 	mockMvc.perform(delete("/resources/{id}", id)).andExpect(status().isNoContent());
-	
+
 	/*
 	 * get should return not found
 	 */
-	mockMvc.perform(get("/resources/{id}", id).contentType("application/json"))
-	.andExpect(status().isNotFound());
+	mockMvc.perform(get("/resources/{id}", id).contentType(TestConstants.CONTENT_TYPE)).andExpect(
+		status().isNotFound());
     }
 }

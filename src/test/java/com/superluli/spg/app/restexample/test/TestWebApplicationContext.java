@@ -1,4 +1,4 @@
-package com.superluli.spg.app.restexample.test.integration;
+package com.superluli.spg.app.restexample.test;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

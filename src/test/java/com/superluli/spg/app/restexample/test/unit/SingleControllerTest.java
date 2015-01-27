@@ -31,6 +31,7 @@ import com.superluli.spg.app.restexample.MyModel;
 import com.superluli.spg.app.restexample.MyModelController;
 import com.superluli.spg.app.restexample.MyModelManager;
 import com.superluli.spg.app.restexample.NestedWebappRuntimeException;
+import com.superluli.spg.app.restexample.test.TestConstants;
 
 public class SingleControllerTest {
 
@@ -97,7 +98,7 @@ public class SingleControllerTest {
 	Mockito.when(mockManager.post(Matchers.any(MyModel.class))).thenReturn(model);
 	
 	mockMvc.perform(
-		post("/resources").contentType("application/json").content(
+		post("/resources").contentType(TestConstants.CONTENT_TYPE).content(
 			jsonMapper.writeValueAsBytes(model)))
 			.andExpect(status().isOk())
 			.andExpect(jsonPath("$.id", is("xxx")))
