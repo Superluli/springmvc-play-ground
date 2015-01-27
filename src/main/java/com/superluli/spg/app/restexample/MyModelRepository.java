@@ -23,16 +23,23 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *
  */
 @Repository
+@Replacable
 public class MyModelRepository {
 
-    private static final String DB_FILE_NAME = "/db.json";
+    private static final String DEFAULT_DB_FILE_NAME = "db.json";
+    
+    private String dbFileName;
 
     private Map<String, MyModel> models;
 
     private ObjectMapper mapper;
 
-    @PostConstruct
-    public void init() {
+    public MyModelRepository(){
+	this(DEFAULT_DB_FILE_NAME);
+    }
+    
+    public MyModelRepository(String dbFileName){
+	this.dbFileName = dbFileName;
 	models = new HashMap<String, MyModel>();
 	mapper = new ObjectMapper();
 	reload();
@@ -67,7 +74,7 @@ public class MyModelRepository {
     private void reload() {
 
 	try {
-	    File file = new File(System.getProperty("user.dir") + DB_FILE_NAME);
+	    File file = new File(System.getProperty("user.dir") + "/" + dbFileName);
 	    if (!file.exists()) {
 		file.createNewFile();
 	    }
@@ -86,7 +93,7 @@ public class MyModelRepository {
     private void rewrite() {
 	try {
 	    PrintWriter out = new PrintWriter(new File(System.getProperty("user.dir")
-		    + DB_FILE_NAME));
+		    + "/" + dbFileName));
 	    out.print(mapper.writeValueAsString(models));
 	    out.close();
 	} catch (Exception e) {
